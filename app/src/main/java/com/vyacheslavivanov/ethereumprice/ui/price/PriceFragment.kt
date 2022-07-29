@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vyacheslavivanov.ethereumprice.databinding.FragmentPriceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PriceFragment : Fragment() {
     private lateinit var binding: FragmentPriceBinding
 
