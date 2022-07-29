@@ -4,6 +4,7 @@
     package="com.vyacheslavivanov.ethereumprice">
 
     <application
+        android:name=".Application"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EthereumPrice"
