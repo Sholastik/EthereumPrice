@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.vyacheslavivanov.ethereumprice.R
 import com.vyacheslavivanov.ethereumprice.data.price.Price
 import java.text.SimpleDateFormat
@@ -36,7 +37,8 @@ fun PriceScreenTitle(modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(16.dp),
         text = stringResource(R.string.price_screen_title),
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
         textAlign = TextAlign.Center
     )
 }
@@ -57,11 +59,11 @@ fun PriceDateCard(modifier: Modifier = Modifier, price: Price) {
     Card(
         modifier = modifier,
         backgroundColor = Color(0xFFF2F3F5),
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(8.dp)
     ) {
         Text(
             modifier = Modifier
-                .padding(12.dp)
+                .padding(16.dp)
                 .fillMaxWidth(),
             text = when (price) {
                 is Price.Live -> stringResource(id = R.string.price_card_date_now)
@@ -71,6 +73,7 @@ fun PriceDateCard(modifier: Modifier = Modifier, price: Price) {
                 ).format(price.date)
             },
             textAlign = TextAlign.Center,
+            fontSize = 16.sp
         )
     }
 }
