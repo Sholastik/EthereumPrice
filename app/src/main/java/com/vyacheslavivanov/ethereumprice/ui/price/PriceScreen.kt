@@ -125,8 +125,11 @@ fun PriceDateSelectButton(modifier: Modifier = Modifier) {
         cornerRadius = 8.dp
     ) {
         Text(
-            text = "Hello",
-            color = Color.White
+            text = stringResource(id = R.string.price_date_button_title),
+            color = Color.White,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            letterSpacing = (-0.4).sp
         )
     }
 }
