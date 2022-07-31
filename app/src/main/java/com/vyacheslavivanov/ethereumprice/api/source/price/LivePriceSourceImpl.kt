@@ -10,7 +10,7 @@ import javax.inject.Inject
 class LivePriceSourceImpl @Inject constructor(
     private val livePriceService: LivePriceService
 ) : LivePriceSource() {
-    override suspend fun fetchPrice(): Result<Price> =
+    override suspend fun fetchPrice(): Result<Price.Live> =
         livePriceService.fetchLivePrice()
             .fold()
             .log()

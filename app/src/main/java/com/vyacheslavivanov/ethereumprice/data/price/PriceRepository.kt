@@ -13,7 +13,7 @@ class PriceRepository @Inject constructor(
         livePriceFlow
     }
 
-    private val livePriceFlow: Flow<Result<Price>> = flow {
+    private val livePriceFlow: Flow<Result<Price.Live>> = flow {
         while (true) {
             emit(livePriceSource.fetchPrice())
             delay(1000)
