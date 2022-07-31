@@ -8,19 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlin.math.*
+import kotlin.math.max
 
 @Composable
 fun GradientButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     colors: List<Color>,
-    angle: Double = 0.0,
+    gradientOffset: Float = 0f,
     cornerRadius: Dp = 0.dp,
     content: @Composable RowScope.() -> Unit
 ) {
@@ -30,8 +29,8 @@ fun GradientButton(
         modifier = modifier
             .gradientBackground(
                 colors = colors,
-                angle = angle,
-                cornerRadius = cornerRadius
+                cornerRadius = cornerRadius,
+                gradientOffset = gradientOffset
             )
             .fillMaxWidth(),
         content = content
@@ -40,26 +39,16 @@ fun GradientButton(
 
 private fun Modifier.gradientBackground(
     colors: List<Color>,
-    angle: Double,
-    cornerRadius: Dp
+    cornerRadius: Dp,
+    gradientOffset: Float
 ) = drawBehind {
-    val angleRad = angle / 180.0 * PI
-    val x = cos(angleRad)
-    val y = StrictMath.sin(angleRad)
-
-    val radius = sqrt(size.width.pow(2) + size.height.pow(2)) / 2f
-    val offset = center + Offset((x * radius).toFloat(), (y * radius).toFloat())
-
-    val exactOffset = Offset(
-        x = min(offset.x.coerceAtLeast(0f), size.width),
-        y = size.height - min(offset.y.coerceAtLeast(0f), size.height)
-    )
+    val fraction = 1.0f / max(1, colors.size - 1)
 
     drawRoundRect(
         brush = Brush.linearGradient(
-            colors = colors,
-            start = Offset(size.width, size.height) - exactOffset,
-            end = exactOffset
+            colorStops = colors.mapIndexed { index, color ->
+                index * fraction + gradientOffset to color
+            }.toTypedArray(),
         ),
         cornerRadius = CornerRadius(
             x = cornerRadius.toPx(),

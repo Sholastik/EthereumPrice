@@ -1,5 +1,6 @@
 package com.vyacheslavivanov.ethereumprice.ui.price
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,6 +9,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -96,6 +98,19 @@ fun PriceDateCardPreview() {
 
 @Composable
 fun PriceDateSelectButton(modifier: Modifier = Modifier) {
+    val infiniteTransition = rememberInfiniteTransition()
+
+    val offset by infiniteTransition.animateFloat(
+        initialValue = -0.3f,
+        targetValue = 0.3f,
+        animationSpec = infiniteRepeatable(
+            animation = keyframes {
+                durationMillis = 7500
+            },
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+
     GradientButton(
         onClick = {
 
@@ -106,8 +121,8 @@ fun PriceDateSelectButton(modifier: Modifier = Modifier) {
             Color(0xFF8256BD),
             Color(0xFFD87556)
         ),
-        angle = 45.0,
-        cornerRadius = 8.dp,
+        gradientOffset = offset,
+        cornerRadius = 8.dp
     ) {
         Text(
             text = "Hello",
