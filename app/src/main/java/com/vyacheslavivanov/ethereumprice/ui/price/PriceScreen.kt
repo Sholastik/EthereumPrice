@@ -93,3 +93,38 @@ fun PriceDateCardPreview() {
         )
     }
 }
+
+@Composable
+fun PriceDateSelectButton(modifier: Modifier = Modifier) {
+    GradientButton(
+        onClick = {
+
+        },
+        modifier = modifier,
+        colors = listOf(
+            Color(0xFF628FDC),
+            Color(0xFF8256BD),
+            Color(0xFFD87556)
+        ),
+        angle = 45.0,
+        cornerRadius = 8.dp,
+    ) {
+        Text(
+            text = "Hello",
+            color = Color.White
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF
+)
+@Composable
+fun PriceDateSelectButtonPreview() {
+    Column {
+        PriceDateSelectButton(
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
