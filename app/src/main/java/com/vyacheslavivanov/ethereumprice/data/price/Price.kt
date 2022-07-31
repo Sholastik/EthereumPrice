@@ -1,5 +1,6 @@
 package com.vyacheslavivanov.ethereumprice.data.price
 
 data class Price(
-    val price: Double
+    val price: Double,
+    val isLive: Boolean
 )
