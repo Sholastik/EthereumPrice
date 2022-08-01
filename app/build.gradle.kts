@@ -84,8 +84,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.0")
 
-    implementation("com.google.dagger:hilt-android:2.43")
-    kapt("com.google.dagger:hilt-android-compiler:2.43")
+    implementation("com.google.dagger:hilt-android:2.43.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.43.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
