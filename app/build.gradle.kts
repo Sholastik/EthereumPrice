@@ -81,6 +81,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.2.0")
     implementation("androidx.compose.animation:animation:1.2.0")
     implementation("androidx.compose.ui:ui-tooling:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.0")
 
