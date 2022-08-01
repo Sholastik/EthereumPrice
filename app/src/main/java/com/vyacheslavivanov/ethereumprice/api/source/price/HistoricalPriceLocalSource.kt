@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 abstract class HistoricalPriceLocalSource {
     abstract fun getHistoricalPriceFlow(): Flow<Result<Price.Historical>>
+    abstract suspend fun saveHistoricalPrice(price: Price.Historical): Result<Unit>
 }

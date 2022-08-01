@@ -1,5 +1,9 @@
 package com.vyacheslavivanov.ethereumprice.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vyacheslavivanov.ethereumprice.BuildConfig
@@ -12,6 +16,7 @@ import dagger.Provides
 import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -94,5 +99,16 @@ abstract class PriceApiModule {
             @PriceApi retrofit: Retrofit
         ): HistoricalPriceService =
             retrofit.create()
+
+        @PriceApi
+        @Provides
+        @Reusable
+        fun provideDataStore(
+            @ApplicationContext context: Context
+        ): DataStore<Preferences> {
+            return context.dataStore
+        }
+
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "historical.price")
     }
 }
