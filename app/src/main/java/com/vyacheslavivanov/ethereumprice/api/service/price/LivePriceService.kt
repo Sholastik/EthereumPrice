@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface LivePriceService {
     @GET("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD")
-    fun fetchLivePrice(): Response<LivePriceResponse>
+    suspend fun fetchLivePrice(): Response<LivePriceResponse>
 }

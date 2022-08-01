@@ -55,7 +55,7 @@ abstract class PriceApiModule {
             @PriceApi okHttpClient: OkHttpClient
         ): Retrofit =
             Retrofit.Builder()
-                .baseUrl("http://localhost/") // Empty baseUrl
+                .baseUrl("https://localhost/") // Empty baseUrl
                 .client(okHttpClient)
                 .addConverterFactory(
                     MoshiConverterFactory.create(
