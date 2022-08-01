@@ -1,6 +1,8 @@
 package com.vyacheslavivanov.ethereumprice.data.price
 
 import com.vyacheslavivanov.ethereumprice.api.source.price.LivePriceSource
+import com.vyacheslavivanov.ethereumprice.data.Resource
+import com.vyacheslavivanov.ethereumprice.data.Resource.Companion.toResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,9 +15,10 @@ class PriceRepository @Inject constructor(
         livePriceFlow
     }
 
-    private val livePriceFlow: Flow<Result<Price.Live>> = flow {
+    private val livePriceFlow: Flow<Resource<Price.Live>> = flow {
         while (true) {
-            emit(livePriceSource.fetchPrice())
+            val resource = livePriceSource.fetchPrice().toResource()
+            emit(resource)
             delay(1000)
         }
     }
