@@ -1,4 +1,4 @@
-package com.vyacheslavivanov.ethereumprice.ui.price
+package com.vyacheslavivanov.ethereumprice.ui
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
