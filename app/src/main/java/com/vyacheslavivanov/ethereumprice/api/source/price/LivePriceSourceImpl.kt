@@ -16,12 +16,12 @@ class LivePriceSourceImpl @Inject constructor(
 ) : LivePriceSource() {
     override fun fetchLivePrice(): Flow<Result<Price.Live>> = flow {
         while (true) {
-            val resource = livePriceService.fetchLivePrice()
+            val result = livePriceService.fetchLivePrice()
                 .fold()
                 .log()
                 .map { it.toDomain() }
 
-            emit(resource)
+            emit(result)
             delay(1000)
         }
     }

@@ -37,7 +37,7 @@ abstract class PriceApiModule {
     @Binds
     @Reusable
     abstract fun bindHistoricalPriceRemoteSource(
-        historicalPriceRemoteSourceImpl: HistoricalPriceRemoteRemoteSourceImpl
+        historicalPriceRemoteSourceImpl: HistoricalPriceRemoteSourceImpl
     ): HistoricalPriceRemoteSource
 
     @PriceApi

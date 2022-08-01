@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.inject.Inject
 
-class HistoricalPriceRemoteRemoteSourceImpl @Inject constructor(
+class HistoricalPriceRemoteSourceImpl @Inject constructor(
     @PriceApiModule.PriceApi private val historicalPriceService: HistoricalPriceService
 ) : HistoricalPriceRemoteSource() {
     override fun getHistoricalPriceFlow(date: Date): Flow<Result<Price.Historical>> = flow {
