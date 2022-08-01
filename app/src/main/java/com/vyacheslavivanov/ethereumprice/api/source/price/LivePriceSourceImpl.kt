@@ -6,14 +6,23 @@ import com.vyacheslavivanov.ethereumprice.api.util.fold
 import com.vyacheslavivanov.ethereumprice.api.util.log
 import com.vyacheslavivanov.ethereumprice.data.price.Price
 import com.vyacheslavivanov.ethereumprice.di.PriceApiModule
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class LivePriceSourceImpl @Inject constructor(
     @PriceApiModule.PriceApi private val livePriceService: LivePriceService
 ) : LivePriceSource() {
-    override suspend fun fetchLivePrice(): Result<Price.Live> =
-        livePriceService.fetchLivePrice()
-            .fold()
-            .log()
-            .map { it.toDomain() }
+    override fun fetchLivePrice(): Flow<Result<Price.Live>> = flow {
+        while (true) {
+            val resource = livePriceService.fetchLivePrice()
+                .fold()
+                .log()
+                .map { it.toDomain() }
+
+            emit(resource)
+            delay(1000)
+        }
+    }
 }
