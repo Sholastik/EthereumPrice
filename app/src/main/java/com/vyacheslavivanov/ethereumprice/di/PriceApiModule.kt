@@ -3,7 +3,10 @@ package com.vyacheslavivanov.ethereumprice.di
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vyacheslavivanov.ethereumprice.BuildConfig
+import com.vyacheslavivanov.ethereumprice.api.service.price.HistoricalPriceService
 import com.vyacheslavivanov.ethereumprice.api.service.price.LivePriceService
+import com.vyacheslavivanov.ethereumprice.api.source.price.HistoricalPriceSource
+import com.vyacheslavivanov.ethereumprice.api.source.price.HistoricalPriceSourceImpl
 import com.vyacheslavivanov.ethereumprice.api.source.price.LivePriceSource
 import com.vyacheslavivanov.ethereumprice.api.source.price.LivePriceSourceImpl
 import dagger.Binds
@@ -32,6 +35,13 @@ abstract class PriceApiModule {
     abstract fun bindLivePriceSource(
         livePriceSourceImpl: LivePriceSourceImpl
     ): LivePriceSource
+
+    @PriceApi
+    @Binds
+    @Reusable
+    abstract fun bindHistoricalPriceSource(
+        historicalPriceSourceImpl: HistoricalPriceSourceImpl
+    ): HistoricalPriceSource
 
     companion object {
         @PriceApi
@@ -71,6 +81,14 @@ abstract class PriceApiModule {
         fun provideLivePriceService(
             @PriceApi retrofit: Retrofit
         ): LivePriceService =
+            retrofit.create()
+
+        @PriceApi
+        @Provides
+        @Reusable
+        fun provideHistoricalPriceService(
+            @PriceApi retrofit: Retrofit
+        ): HistoricalPriceService =
             retrofit.create()
     }
 }
