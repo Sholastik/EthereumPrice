@@ -17,7 +17,7 @@ import com.vyacheslavivanov.ethereumprice.R
 import com.vyacheslavivanov.ethereumprice.ui.GradientButton
 
 @Composable
-fun PriceDateSelectButton(modifier: Modifier = Modifier) {
+fun PriceDateSelectButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition()
 
     val offset by infiniteTransition.animateFloat(
@@ -32,9 +32,7 @@ fun PriceDateSelectButton(modifier: Modifier = Modifier) {
     )
 
     GradientButton(
-        onClick = {
-
-        },
+        onClick = onClick,
         modifier = modifier,
         colors = listOf(
             Color(0xFF628FDC),
@@ -62,7 +60,8 @@ fun PriceDateSelectButton(modifier: Modifier = Modifier) {
 fun PriceDateSelectButtonPreview() {
     Column {
         PriceDateSelectButton(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            onClick = {}
         )
     }
 }
