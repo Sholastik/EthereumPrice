@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,12 +20,14 @@ import com.vyacheslavivanov.ethereumprice.data.price.Price
 import java.text.SimpleDateFormat
 import java.util.*
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PriceDateCard(modifier: Modifier = Modifier, price: Price) {
+fun PriceDateCard(modifier: Modifier = Modifier, price: Price, onClick: () -> Unit) {
     Card(
         modifier = modifier,
         backgroundColor = Color(0xFFF2F3F5),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(8.dp),
+        onClick = onClick
     ) {
         Text(
             modifier = Modifier
@@ -54,7 +57,8 @@ fun PriceDateCardPreview() {
             modifier = Modifier.padding(16.dp),
             price = Price.Live(
                 100.0
-            )
+            ),
+            onClick = {}
         )
     }
 }
