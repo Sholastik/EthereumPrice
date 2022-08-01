@@ -16,30 +16,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vyacheslavivanov.ethereumprice.R
+import com.vyacheslavivanov.ethereumprice.data.Resource
 import com.vyacheslavivanov.ethereumprice.data.price.Price
 import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PriceDateCard(modifier: Modifier = Modifier, price: Price, onClick: () -> Unit) {
+fun PriceDateCard(
+    modifier: Modifier = Modifier,
+    price: Resource<Price>,
+    onClick: () -> Unit
+) {
     Card(
         modifier = modifier,
         backgroundColor = Color(0xFFF2F3F5),
         shape = RoundedCornerShape(8.dp),
         onClick = onClick
     ) {
-        Text(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            text = when (price) {
+        val text = when (price) {
+            is Resource.Success -> when (price.data) {
                 is Price.Live -> stringResource(id = R.string.price_card_date_now)
                 is Price.Historical -> SimpleDateFormat(
                     stringResource(id = R.string.price_card_date_format),
                     Locale.getDefault()
-                ).format(price.date)
-            },
+                ).format(price.data.date)
+            }
+            else -> ""
+        }
+
+        Text(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            text = text,
             textAlign = TextAlign.Center,
             fontSize = 16.sp
         )
@@ -55,8 +65,10 @@ fun PriceDateCardPreview() {
     Column {
         PriceDateCard(
             modifier = Modifier.padding(16.dp),
-            price = Price.Live(
-                100.0
+            price = Resource.Success(
+                Price.Live(
+                    100.0
+                )
             ),
             onClick = {}
         )
