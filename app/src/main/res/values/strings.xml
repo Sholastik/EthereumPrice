@@ -5,4 +5,5 @@
     <string name="price_card_date_format">d MMMM yyyy, EE, HH:mm</string>
     <string name="price_date_button_title">Выбрать дату</string>
     <string name="price_screen_exception_title">Что-то пошло не так…</string>
+    <string name="price_text_live_badge_title">LIVE</string>
 </resources>
