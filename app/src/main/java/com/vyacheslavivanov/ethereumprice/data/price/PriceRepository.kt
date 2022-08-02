@@ -17,8 +17,6 @@ class PriceRepository @Inject constructor(
 ) {
     val priceFlow: Flow<Resource<Price>> = channelFlow {
         historicalPriceLocalSource.getHistoricalPriceFlow().collectLatest { result ->
-            send(Resource.Loading)
-
             result.fold(
                 onSuccess = {
                     send(Resource.Success(it))
