@@ -15,18 +15,20 @@ class PriceRepository @Inject constructor(
     @PriceApiModule.PriceApi private val historicalPriceLocalSource: HistoricalPriceLocalSource,
     @PriceApiModule.PriceApi private val historicalPriceRemoteSource: HistoricalPriceRemoteSource
 ) {
-    val priceFlow: Flow<Resource<Price>> = flow {
+    val priceFlow: Flow<Resource<Price>> = channelFlow {
         historicalPriceLocalSource.getHistoricalPriceFlow().collectLatest { result ->
+            send(Resource.Loading)
+
             result.fold(
                 onSuccess = {
-                    emit(Resource.Success(it))
+                    send(Resource.Success(it))
                 },
                 onFailure = {
-                    emitAll(
-                        livePriceSource.fetchLivePrice().map {
-                            it.toResource()
-                        }
-                    )
+                    livePriceSource.fetchLivePrice().map {
+                        it.toResource()
+                    }.collectLatest {
+                        send(it)
+                    }
                 }
             )
         }
