@@ -14,7 +14,7 @@ data class HistoricalPriceResponse(
         @JsonClass(generateAdapter = true)
         data class PriceResponse(
             @Json(name = "close") val price: Double,
-            @Json(name = "timestamp") val date: Long
+            @Json(name = "time") val date: Long
         )
     }
 }
