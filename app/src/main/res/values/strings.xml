@@ -13,4 +13,10 @@
     <string name="price_date_sheet_time_format">HH:mm</string>
     <string name="price_date_sheet_date_hint">Выберите дату</string>
     <string name="price_date_sheet_time_hint">Выберите время</string>
+    <string name="price_date_sheet_quick_button_date_format">EE</string>
+    <string name="price_date_sheet_quick_button_time_format">, HH:mm</string>
+    <string name="price_date_sheet_quick_button_today_title">Сегодня</string>
+    <string name="price_date_sheet_quick_button_yesterday_title">Вчера</string>
+    <string name="price_date_sheet_quick_button_last_week_title">Предыдущая неделя</string>
+    <string name="price_date_sheet_quick_button_current_date_time_title">Текущие дата и время</string>
 </resources>

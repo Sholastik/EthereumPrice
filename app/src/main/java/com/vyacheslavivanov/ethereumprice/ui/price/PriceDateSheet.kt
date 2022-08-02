@@ -1,5 +1,6 @@
 package com.vyacheslavivanov.ethereumprice.ui.price
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -28,6 +29,7 @@ fun PriceDateSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
             PriceDateSheetContent(
+                modifier = Modifier.padding(bottom = 48.dp),
                 onDateSelected = {
                     onDateSelected(it)
                     onDismiss()
@@ -69,7 +71,7 @@ fun PriceDateSheetContent(
         PriceSheets.Main -> {
             val isApplyButtonActive by remember {
                 derivedStateOf {
-                    (date != null) == (time != null)
+                    date != null && time != null
                 }
             }
 
@@ -80,9 +82,6 @@ fun PriceDateSheetContent(
                 onSetDate = {
                     date = it
                 },
-                onSetTime = {
-                    time = it
-                },
                 onSelectDate = {
                     currentSheet = PriceSheets.Date
                 },
@@ -91,32 +90,33 @@ fun PriceDateSheetContent(
                 },
                 isApplyButtonActive = isApplyButtonActive,
                 onApply = {
-                    if (date != null && time != null) {
-                        val dateCalendar = Calendar.getInstance().apply {
-                            setTime(date!!)
-                        }
-
-                        val timeCalendar = Calendar.getInstance().apply {
-                            setTime(time!!)
-                        }
-
-                        val calendar = Calendar.getInstance().apply {
-                            clear()
-                            set(
-                                dateCalendar[Calendar.YEAR],
-                                dateCalendar[Calendar.MONTH],
-                                dateCalendar[Calendar.DATE],
-                                timeCalendar[Calendar.HOUR_OF_DAY],
-                                timeCalendar[Calendar.MINUTE]
-                            )
-                        }
-
-                        onDateSelected(calendar.time)
-                    } else if (date == null && time == null) {
-                        onDateCleared()
+                    val dateCalendar = Calendar.getInstance().apply {
+                        setTime(date!!)
                     }
+
+                    val timeCalendar = Calendar.getInstance().apply {
+                        setTime(time!!)
+                    }
+
+                    val calendar = Calendar.getInstance().apply {
+                        clear()
+                        set(
+                            dateCalendar[Calendar.YEAR],
+                            dateCalendar[Calendar.MONTH],
+                            dateCalendar[Calendar.DATE],
+                            timeCalendar[Calendar.HOUR_OF_DAY],
+                            timeCalendar[Calendar.MINUTE]
+                        )
+                    }
+
+                    onDateSelected(calendar.time)
                 },
-                onDismiss = onDismiss
+                onDateCleared = onDateCleared,
+                onDismiss = {
+                    time = null
+                    date = null
+                    onDismiss()
+                }
             )
         }
         PriceSheets.Date -> TODO()
