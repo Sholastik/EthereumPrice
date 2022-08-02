@@ -53,7 +53,7 @@ fun MainSheet(
         ) {
             DismissButton(onClick = onDismiss)
 
-            SheetTitle(text = stringResource(id = R.string.price_date_sheet_title))
+            SheetTitle(text = stringResource(id = R.string.price_date_main_sheet_title))
 
             StateButton(
                 text = stringResource(id = R.string.price_date_sheet_apply_title),

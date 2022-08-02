@@ -7,7 +7,7 @@
     <string name="price_screen_exception_title">Что-то пошло не так…</string>
     <string name="price_text_live_badge_title">LIVE</string>
     <string name="price_date_sheet_dismiss_title">Отменить</string>
-    <string name="price_date_sheet_title">Дата и время</string>
+    <string name="price_date_main_sheet_title">Дата и время</string>
     <string name="price_date_sheet_apply_title">Готово</string>
     <string name="price_date_sheet_date_format">d MMMM yyyy, EE</string>
     <string name="price_date_sheet_time_format">HH:mm</string>
@@ -19,4 +19,6 @@
     <string name="price_date_sheet_quick_button_yesterday_title">Вчера</string>
     <string name="price_date_sheet_quick_button_last_week_title">Предыдущая неделя</string>
     <string name="price_date_sheet_quick_button_current_date_time_title">Текущие дата и время</string>
+    <string name="price_date_date_sheet_title">Выберите дату</string>
+    <string name="price_date_sheet_remove_title">Удалить</string>
 </resources>
