@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/release/com.vyacheslavivanov.ethereumprice-1.0.0-release.apk
+/app/release/output-metadata.json
