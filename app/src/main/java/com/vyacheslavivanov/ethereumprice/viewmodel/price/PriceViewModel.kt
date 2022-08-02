@@ -7,15 +7,23 @@ import com.vyacheslavivanov.ethereumprice.data.price.PriceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class PriceViewModel @Inject constructor(
-    priceRepository: PriceRepository
+    private val priceRepository: PriceRepository
 ) : ViewModel() {
     val priceStateFlow = priceRepository.priceFlow.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
         initialValue = Resource.Loading
     )
+
+    fun setHistoricalPriceDate(date: Date) {
+        viewModelScope.launch {
+            priceRepository.fetchHistoricalPrice(date)
+        }
+    }
 }
