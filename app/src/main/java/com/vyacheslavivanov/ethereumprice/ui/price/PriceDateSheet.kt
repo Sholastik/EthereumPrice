@@ -1,9 +1,6 @@
 package com.vyacheslavivanov.ethereumprice.ui.price
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -12,10 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vyacheslavivanov.ethereumprice.R
+import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -145,7 +144,9 @@ fun MainSheet(
 ) {
     Column(modifier = modifier) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(4.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -160,6 +161,102 @@ fun MainSheet(
                 onClick = onApply
             )
         }
+
+        MainSheetDateTimeCards(
+            modifier = Modifier
+                .padding(horizontal = 12.dp)
+                .fillMaxWidth(),
+            date = date,
+            time = time,
+            onSelectDate = onSelectDate,
+            onSelectTime = onSelectTime
+        )
+    }
+}
+
+@Composable
+fun MainSheetDateTimeCards(
+    modifier: Modifier = Modifier,
+    date: Date?,
+    time: Date?,
+    onSelectDate: () -> Unit,
+    onSelectTime: () -> Unit
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val shouldShowDateHint by remember {
+            derivedStateOf {
+                date == null
+            }
+        }
+
+        val shouldShowTimeHint by remember {
+            derivedStateOf {
+                date == null
+            }
+        }
+
+        ClickableTextCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            text = if (shouldShowDateHint) {
+                stringResource(id = R.string.price_date_sheet_date_hint)
+            } else {
+                SimpleDateFormat(
+                    stringResource(id = R.string.price_date_sheet_date_format),
+                    Locale.getDefault()
+                ).format(date!!)
+            },
+            isHint = shouldShowDateHint,
+            onClick = onSelectDate
+        )
+
+        ClickableTextCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            text = if (shouldShowTimeHint) {
+                stringResource(id = R.string.price_date_sheet_time_hint)
+            } else {
+                SimpleDateFormat(
+                    stringResource(id = R.string.price_date_sheet_time_format),
+                    Locale.getDefault()
+                ).format(time!!)
+            },
+            isHint = shouldShowTimeHint,
+            onClick = onSelectTime
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun ClickableTextCard(
+    modifier: Modifier = Modifier,
+    text: String,
+    isHint: Boolean,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = modifier,
+        backgroundColor = Color(0xFFF2F3F5),
+        shape = RoundedCornerShape(8.dp),
+        onClick = onClick,
+    ) {
+        Text(
+            modifier = Modifier.padding(8.dp),
+            text = text,
+            textAlign = TextAlign.Center,
+            color = if (isHint) {
+                Color(0xFF7C89A3)
+            } else {
+                Color(0xFF000000)
+            }
+        )
     }
 }
 

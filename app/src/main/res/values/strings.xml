@@ -9,4 +9,8 @@
     <string name="price_date_sheet_dismiss_title">Отменить</string>
     <string name="price_date_sheet_title">Дата и время</string>
     <string name="price_date_sheet_apply_title">Готово</string>
+    <string name="price_date_sheet_date_format">d MMMM yyyy, EE</string>
+    <string name="price_date_sheet_time_format">HH:mm</string>
+    <string name="price_date_sheet_date_hint">Выберите дату</string>
+    <string name="price_date_sheet_time_hint">Выберите время</string>
 </resources>
