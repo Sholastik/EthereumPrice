@@ -28,7 +28,15 @@ fun PriceScreen(viewModel: PriceViewModel) {
 
     val coroutineScope = rememberCoroutineScope()
 
-    PriceDateSheetLayout(bottomSheetState = bottomSheetState) {
+    PriceDateSheetLayout(
+        bottomSheetState = bottomSheetState,
+        onDateSelected = {
+            viewModel.setHistoricalPriceDate(it)
+            coroutineScope.launch {
+                bottomSheetState.hide()
+            }
+        }
+    ) {
         Scaffold {
             PriceBody(
                 modifier = Modifier.padding(it),
