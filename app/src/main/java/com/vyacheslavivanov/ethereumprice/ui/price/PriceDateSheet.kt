@@ -1,11 +1,13 @@
 package com.vyacheslavivanov.ethereumprice.ui.price
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,6 +69,8 @@ fun PriceDateSheetContent(
     var date by remember { mutableStateOf<Date?>(null) }
     var time by remember { mutableStateOf<Date?>(null) }
 
+    val context = LocalContext.current
+
     when (currentSheet) {
         PriceSheets.Main -> {
             val isApplyButtonActive by remember {
@@ -109,7 +113,15 @@ fun PriceDateSheetContent(
                         )
                     }
 
-                    onDateSelected(calendar.time)
+                    if (calendar.after(Calendar.getInstance())) {
+                        Toast.makeText(
+                            context,
+                            R.string.price_date_sheet_in_future_toast,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        onDateSelected(calendar.time)
+                    }
                 },
                 onDateCleared = onDateCleared,
                 onDismiss = {
