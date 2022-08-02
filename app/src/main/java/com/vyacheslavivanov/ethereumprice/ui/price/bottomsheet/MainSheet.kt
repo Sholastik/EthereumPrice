@@ -1,4 +1,4 @@
-package com.vyacheslavivanov.ethereumprice.ui.price
+package com.vyacheslavivanov.ethereumprice.ui.price.bottomsheet
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape

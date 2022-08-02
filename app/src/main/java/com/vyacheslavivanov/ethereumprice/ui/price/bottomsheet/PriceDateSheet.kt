@@ -1,4 +1,4 @@
-package com.vyacheslavivanov.ethereumprice.ui.price
+package com.vyacheslavivanov.ethereumprice.ui.price.bottomsheet
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.padding
