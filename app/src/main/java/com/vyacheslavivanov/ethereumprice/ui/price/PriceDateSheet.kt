@@ -18,12 +18,16 @@ import java.util.*
 fun PriceDateSheetLayout(
     bottomSheetState: ModalBottomSheetState,
     onDateSelected: (Date) -> Unit,
+    onDateCleared: () -> Unit,
     content: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
-            PriceDateSheetContent(onDateSelected = onDateSelected)
+            PriceDateSheetContent(
+                onDateSelected = onDateSelected,
+                onDateCleared = onDateCleared
+            )
         },
         sheetShape = RoundedCornerShape(
             topStart = 16.dp,
@@ -34,7 +38,10 @@ fun PriceDateSheetLayout(
 }
 
 @Composable
-fun PriceDateSheetContent(onDateSelected: (Date) -> Unit) {
+fun PriceDateSheetContent(
+    onDateSelected: (Date) -> Unit,
+    onDateCleared: () -> Unit
+) {
     Box(modifier = Modifier.height(256.dp))
 }
 
@@ -45,7 +52,9 @@ fun PriceDateSheetContent(onDateSelected: (Date) -> Unit) {
 @Composable
 fun PriceDateSheetContentPreview() {
     MaterialTheme {
-        PriceDateSheetContent(onDateSelected = {})
+        PriceDateSheetContent(
+            onDateSelected = {},
+            onDateCleared = {}
+        )
     }
 }
-

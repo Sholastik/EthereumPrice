@@ -35,6 +35,12 @@ fun PriceScreen(viewModel: PriceViewModel) {
             coroutineScope.launch {
                 bottomSheetState.hide()
             }
+        },
+        onDateCleared = {
+            viewModel.clearHistoricalPriceDate()
+            coroutineScope.launch {
+                bottomSheetState.hide()
+            }
         }
     ) {
         Scaffold {

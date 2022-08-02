@@ -43,6 +43,15 @@ class HistoricalPriceLocalSourceImpl @Inject constructor(
         return Result.success(Unit)
     }
 
+    override suspend fun clearHistoricalPrice(): Result<Unit> {
+        dataStore.edit {
+            it.remove(priceKey)
+            it.remove(dateKey)
+        }
+
+        return Result.success(Unit)
+    }
+
     companion object {
         private val dateKey = longPreferencesKey("historicalPrice.date")
         private val priceKey = doublePreferencesKey("historicalPrice.price")

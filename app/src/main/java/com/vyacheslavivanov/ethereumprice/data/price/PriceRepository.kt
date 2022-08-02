@@ -43,4 +43,8 @@ class PriceRepository @Inject constructor(
 
         return result.map { }
     }
+
+    suspend fun clearHistoricalPrice(): Result<Unit> {
+        return historicalPriceLocalSource.clearHistoricalPrice()
+    }
 }

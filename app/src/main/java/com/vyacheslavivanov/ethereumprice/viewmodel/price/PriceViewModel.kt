@@ -26,4 +26,10 @@ class PriceViewModel @Inject constructor(
             priceRepository.fetchHistoricalPrice(date)
         }
     }
+
+    fun clearHistoricalPriceDate() {
+        viewModelScope.launch {
+            priceRepository.clearHistoricalPrice()
+        }
+    }
 }
