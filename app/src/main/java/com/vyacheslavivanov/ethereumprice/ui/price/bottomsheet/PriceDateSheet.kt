@@ -136,11 +136,7 @@ fun PriceDateSheetContent(
                     }
                 },
                 onDateCleared = onDateCleared,
-                onDismiss = {
-                    time = null
-                    date = null
-                    onDismiss()
-                }
+                onDismiss = onDismiss
             )
         }
         PriceSheets.Date -> {
