@@ -32,12 +32,11 @@ fun PriceScreen(viewModel: PriceViewModel) {
         bottomSheetState = bottomSheetState,
         onDateSelected = {
             viewModel.setHistoricalPriceDate(it)
-            coroutineScope.launch {
-                bottomSheetState.hide()
-            }
         },
         onDateCleared = {
             viewModel.clearHistoricalPriceDate()
+        },
+        onDismiss = {
             coroutineScope.launch {
                 bottomSheetState.hide()
             }

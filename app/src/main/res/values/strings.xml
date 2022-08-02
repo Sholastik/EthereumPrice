@@ -6,4 +6,7 @@
     <string name="price_date_button_title">Выбрать дату</string>
     <string name="price_screen_exception_title">Что-то пошло не так…</string>
     <string name="price_text_live_badge_title">LIVE</string>
+    <string name="price_date_sheet_dismiss_title">Отменить</string>
+    <string name="price_date_sheet_title">Дата и время</string>
+    <string name="price_date_sheet_apply_title">Готово</string>
 </resources>
