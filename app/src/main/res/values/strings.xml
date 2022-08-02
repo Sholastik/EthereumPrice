@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">EthereumPrice</string>
+    <string name="price_screen_title">Тестовое задание</string>
+    <string name="price_card_date_now">Сейчас</string>
+    <string name="price_card_date_format">d MMMM yyyy, EE, HH:mm</string>
+    <string name="price_date_button_title">Выбрать дату</string>
+    <string name="price_screen_exception_title">Что-то пошло не так…</string>
+    <string name="price_text_live_badge_title">LIVE</string>
+    <string name="price_date_sheet_dismiss_title">Отменить</string>
+    <string name="price_date_main_sheet_title">Дата и время</string>
+    <string name="price_date_sheet_apply_title">Готово</string>
+    <string name="price_date_sheet_date_format">d MMMM yyyy, EE</string>
+    <string name="price_date_sheet_time_format">HH:mm</string>
+    <string name="price_date_sheet_date_hint">Выберите дату</string>
+    <string name="price_date_sheet_time_hint">Выберите время</string>
+    <string name="price_date_sheet_quick_button_date_format">EE</string>
+    <string name="price_date_sheet_quick_button_time_format">, HH:mm</string>
+    <string name="price_date_sheet_quick_button_today_title">Сегодня</string>
+    <string name="price_date_sheet_quick_button_yesterday_title">Вчера</string>
+    <string name="price_date_sheet_quick_button_last_week_title">Предыдущая неделя</string>
+    <string name="price_date_sheet_quick_button_current_date_time_title">Текущие дата и время</string>
+    <string name="price_date_date_sheet_title">Выберите дату</string>
+    <string name="price_date_sheet_remove_title">Удалить</string>
+    <string name="price_date_time_sheet_title">Выберите время</string>
+    <string name="price_date_sheet_time_button_title">Выбрать</string>
+    <string name="price_date_sheet_in_future_toast">Выбранные дата и время находятся в будущем</string>
+    <string name="copied_to_clipboard_toast">Скопировано в буфер обмена</string>
+    <string name="price_date_sheet_too_far_toast">Данные доступны лишь за последние 7 дней</string>
 </resources>
