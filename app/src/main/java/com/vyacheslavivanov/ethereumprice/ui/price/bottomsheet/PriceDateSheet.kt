@@ -119,6 +119,18 @@ fun PriceDateSheetContent(
                             R.string.price_date_sheet_in_future_toast,
                             Toast.LENGTH_SHORT
                         ).show()
+                    } else if (calendar.before(
+                            Calendar.getInstance().apply {
+                                add(Calendar.DAY_OF_MONTH, -7)
+                                add(Calendar.MINUTE, 1)
+                            }
+                        )
+                    ) {
+                        Toast.makeText(
+                            context,
+                            R.string.price_date_sheet_too_far_toast,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         onDateSelected(calendar.time)
                     }

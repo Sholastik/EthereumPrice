@@ -25,4 +25,5 @@
     <string name="price_date_sheet_time_button_title">Выбрать</string>
     <string name="price_date_sheet_in_future_toast">Выбранные дата и время находятся в будущем</string>
     <string name="copied_to_clipboard_toast">Скопировано в буфер обмена</string>
+    <string name="price_date_sheet_too_far_toast">Данные доступны лишь за последние 7 дней</string>
 </resources>
