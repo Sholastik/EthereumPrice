@@ -21,4 +21,6 @@
     <string name="price_date_sheet_quick_button_current_date_time_title">Текущие дата и время</string>
     <string name="price_date_date_sheet_title">Выберите дату</string>
     <string name="price_date_sheet_remove_title">Удалить</string>
+    <string name="price_date_time_sheet_title">Выберите время</string>
+    <string name="price_date_sheet_time_button_title">Выбрать</string>
 </resources>

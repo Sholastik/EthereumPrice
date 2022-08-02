@@ -137,7 +137,25 @@ fun PriceDateSheetContent(
                 }
             )
         }
-        PriceSheets.Time -> TODO()
+        PriceSheets.Time -> {
+            val isClearButtonActive by remember {
+                derivedStateOf {
+                    time != null
+                }
+            }
+
+            TimeSheet(
+                time = time,
+                onSetTime = {
+                    time = it
+                    currentSheet = PriceSheets.Main
+                },
+                isClearButtonActive = isClearButtonActive,
+                onDismiss = {
+                    currentSheet = PriceSheets.Main
+                }
+            )
+        }
     }
 }
 
