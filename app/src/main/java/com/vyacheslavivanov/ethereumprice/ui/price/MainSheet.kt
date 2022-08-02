@@ -168,18 +168,12 @@ fun MainSheetQuickButtons(
             0xFF735CE6
         )
 
-        val timeTitlePart = time?.let {
-            SimpleDateFormat(
-                stringResource(id = R.string.price_date_sheet_quick_button_time_format),
-                Locale.getDefault()
-            ).format(it)
-        } ?: ""
-
         for (index in stringIds.indices) {
             MainSheetQuickButton(
                 modifier = Modifier.fillMaxWidth(),
-                title = stringResource(id = stringIds[index]) + timeTitlePart,
+                title = stringResource(id = stringIds[index]),
                 dayOfWeekDate = dates[index],
+                time = time,
                 imageVector = imageVectors[index],
                 tint = Color(colors[index]),
                 onClick = {
@@ -192,6 +186,7 @@ fun MainSheetQuickButtons(
             modifier = Modifier.fillMaxWidth(),
             title = stringResource(id = R.string.price_date_sheet_quick_button_current_date_time_title),
             dayOfWeekDate = null,
+            time = null,
             imageVector = Icons.Default.Today,
             tint = Color(0xFFFF3347),
             onClick = onDateCleared
@@ -206,6 +201,7 @@ fun MainSheetQuickButton(
     title: String,
     dayOfWeekDate: Date?,
     imageVector: ImageVector,
+    time: Date?,
     tint: Color,
     onClick: () -> Unit,
 ) {
@@ -237,12 +233,21 @@ fun MainSheetQuickButton(
                 letterSpacing = (-0.4).sp
             )
 
-            dayOfWeekDate?.let {
-                Text(
-                    text = SimpleDateFormat(
-                        stringResource(id = R.string.price_date_sheet_quick_button_date_format),
+            dayOfWeekDate?.let { date ->
+                val dateTitlePart = SimpleDateFormat(
+                    stringResource(id = R.string.price_date_sheet_quick_button_date_format),
+                    Locale.getDefault()
+                ).format(date)
+
+                val timeTitlePart = time?.let { time ->
+                    SimpleDateFormat(
+                        stringResource(id = R.string.price_date_sheet_quick_button_time_format),
                         Locale.getDefault()
-                    ).format(it),
+                    ).format(time)
+                } ?: ""
+
+                Text(
+                    text = dateTitlePart + timeTitlePart,
                     color = Color(0xFF7C89A3),
                     fontSize = 16.sp,
                     letterSpacing = (-0.4).sp
