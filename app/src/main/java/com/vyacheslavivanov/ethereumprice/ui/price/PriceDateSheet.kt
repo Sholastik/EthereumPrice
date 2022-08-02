@@ -11,17 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PriceDateSheetLayout(
     bottomSheetState: ModalBottomSheetState,
+    onDateSelected: (Date) -> Unit,
     content: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
-            PriceDateSheetContent()
+            PriceDateSheetContent(onDateSelected = onDateSelected)
         },
         sheetShape = RoundedCornerShape(
             topStart = 16.dp,
@@ -32,7 +34,7 @@ fun PriceDateSheetLayout(
 }
 
 @Composable
-fun PriceDateSheetContent() {
+fun PriceDateSheetContent(onDateSelected: (Date) -> Unit) {
     Box(modifier = Modifier.height(256.dp))
 }
 
@@ -43,7 +45,7 @@ fun PriceDateSheetContent() {
 @Composable
 fun PriceDateSheetContentPreview() {
     MaterialTheme {
-        PriceDateSheetContent()
+        PriceDateSheetContent(onDateSelected = {})
     }
 }
 
