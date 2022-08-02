@@ -2,7 +2,6 @@ package com.vyacheslavivanov.ethereumprice.api.dto.price
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class HistoricalPriceResponse(
@@ -15,7 +14,7 @@ data class HistoricalPriceResponse(
         @JsonClass(generateAdapter = true)
         data class PriceResponse(
             @Json(name = "close") val price: Double,
-            @Json(name = "timestamp") val date: Date
+            @Json(name = "timestamp") val date: Long
         )
     }
 }

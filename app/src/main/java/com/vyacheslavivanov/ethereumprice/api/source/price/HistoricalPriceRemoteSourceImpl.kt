@@ -15,7 +15,7 @@ class HistoricalPriceRemoteSourceImpl @Inject constructor(
     @PriceApiModule.PriceApi private val historicalPriceService: HistoricalPriceService
 ) : HistoricalPriceRemoteSource() {
     override fun getHistoricalPriceFlow(date: Date): Flow<Result<Price.Historical>> = flow {
-        val result = historicalPriceService.fetchHistoricalPrice(date)
+        val result = historicalPriceService.fetchHistoricalPrice(date.time / 1000L)
             .fold()
             .log()
             .map { it.toDomain() }
